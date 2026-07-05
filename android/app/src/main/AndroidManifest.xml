@@ -1,4 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Reading the local audio library: MediaStore.Audio querying (media_library
+         feature). Android 13+ uses READ_MEDIA_AUDIO; older versions fall back to
+         READ_EXTERNAL_STORAGE, which no longer grants media access on 33+. -->
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
     <application
         android:label="Rivus"
         android:name="${applicationName}"

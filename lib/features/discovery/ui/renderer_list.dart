@@ -2,6 +2,7 @@ import 'package:dart_cast/dart_cast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../media_library/ui/library_page.dart';
 import '../models/discovery_state.dart';
 import '../state/discovery_controller.dart';
 import '../state/selected_renderer_controller.dart';
@@ -22,8 +23,12 @@ class RendererList extends ConsumerWidget {
       data: (DiscoveryState state) => _DiscoveryResults(
         state: state,
         selected: selected,
-        onSelect: (CastDevice device) =>
-            ref.read(selectedRendererProvider.notifier).select(device),
+        onSelect: (CastDevice device) {
+          ref.read(selectedRendererProvider.notifier).select(device);
+          Navigator.of(
+            context,
+          ).push(MaterialPageRoute<void>(builder: (_) => const LibraryPage()));
+        },
         onRescan: rescan,
       ),
       loading: () => const Center(child: CircularProgressIndicator()),

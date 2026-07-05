@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:dart_cast/dart_cast.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_multicast_lock/flutter_multicast_lock.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -50,6 +51,11 @@ class RendererDiscoveryController extends StreamNotifier<DiscoveryState> {
   }
 
   void _logDiscoveryEvent(String level, String message) {
+    // Printed directly to the run console too, not just captured for the
+    // About sheet's Diagnostics card, since that card only keeps the last
+    // 10 lines — nowhere near enough to see a full cast attempt plus the
+    // playback poll loop's ongoing chatter.
+    debugPrint('dart_cast $level: $message');
     if (!ref.mounted) {
       return;
     }
