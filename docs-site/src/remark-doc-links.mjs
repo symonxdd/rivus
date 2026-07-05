@@ -14,15 +14,19 @@ export function remarkDocLinks() {
 		const currentSlug = slugFor(currentFile);
 
 		visit(tree, 'link', (node) => {
-			const match = node.url.match(/^([\w-]+\.md)$/);
+			// Also matches an optional #fragment (e.g. "architecture.md#casting"),
+			// carrying it over unchanged so anchor links to a specific section
+			// still work after the path itself is rewritten.
+			const match = node.url.match(/^([\w-]+\.md)(#[\w-]+)?$/);
 			if (!match) return;
 
 			const targetSlug = slugFor(match[1]);
+			const fragment = match[2] ?? '';
 
 			if (currentSlug === '') {
-				node.url = targetSlug === '' ? './' : `${targetSlug}/`;
+				node.url = (targetSlug === '' ? './' : `${targetSlug}/`) + fragment;
 			} else {
-				node.url = targetSlug === '' ? '../' : `../${targetSlug}/`;
+				node.url = (targetSlug === '' ? '../' : `../${targetSlug}/`) + fragment;
 			}
 		});
 	};

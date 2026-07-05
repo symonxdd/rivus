@@ -19,6 +19,7 @@ export default defineConfig({
 			],
 			sidebar: [
 				{ label: 'Overview', link: '/' },
+				{ label: 'How Rivus Works', link: '/concepts/' },
 				{ label: 'Architecture', link: '/architecture/' },
 			],
 		}),

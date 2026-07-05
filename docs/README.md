@@ -25,7 +25,8 @@ Rivus has two core capabilities, built in stages:
 
 | Doc | What's in it |
 |---|---|
-| [architecture.md](architecture.md) | Tech stack, folder structure, theming, discovery/casting design |
+| [concepts.md](concepts.md) | Plain-language explanations of every technology and term Rivus uses (UPnP, DLNA, SSDP, SOAP, DIDL-Lite, MediaStore, and more), plus a glossary |
+| [architecture.md](architecture.md) | Tech stack, folder structure, theming, discovery/casting design decisions |
 
 ## Quick map of the codebase
 
